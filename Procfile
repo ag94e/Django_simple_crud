@@ -1,0 +1,1 @@
+web: gunicorn Frisa.wsgi --log-file -

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title_name %}
+    Frisa
+{% endblock %}
+{% block content %}
+
+<div class="container mx-auto px-5 mt-1">
+    <div class="container mx-auto px-5">
+        <form method="POST">
+            {% csrf_token %}
+            {% if no_existe %}
+                    <div class="alert alert-danger" role="alert">
+                           {{ no_existe }}
+                    </div>
+            {% endif %}
+            <h5 class="fst-italic"> Código </h5>
+            <input type="text" class="form-control" name="codigo"><br>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+</div>
+<div class="container mx-auto px-5">
+    <div class="container mx-auto px-5">
+        <div class="row mt-5">
+            {% if modelo %}
+                {% for mod in modelo %}
+                <div class="col-sm-4 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> Código: {{ mod.codigo }} </h5>
+                            <p class="card-text"> Cantidad: {{ mod.cantidad }} {{ mod.unidad_medida}} </p>
+                            <p class="card-text"> Valoración: {{ mod.clase_valoracion }} </p>
+                            <p class="card-text"> Descripción: {{ mod.descripcion }} </p>
+                            <p class="card-text"> Ubicación: {{ mod.ubicacion }} </p>
+                            <p class="card-text"> Almacén: {{ mod.almacen }} </p>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'inventarios:modificar' mod.id %}" 
+                                class="btn btn-outline-primary"> Modificar </a>
+                                <a href="{% url 'inventarios:eliminar' mod.id %}"
+                                onClick = "return confirm('¿Seguro que quieres borrar este objeto {{ mod.descripcion }}? ');"
+                                class="btn btn-outline-danger"> Eliminar </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
