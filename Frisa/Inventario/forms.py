@@ -16,17 +16,17 @@ class FormularioInventario(forms.ModelForm):
             'modelo',
             'marca',
         ]
-        # labels = {
-        #     'codigo': 'Código',
-        #     'cantidad': 'Cantidad',
-        #     'unidad_medida': 'Unidad de medida',
-        #     'clase_valoracion': 'Clase de valoración',
-        #     'descripcion': 'Descripción',
-        #     'ubicacion': 'Ubicación',
-        #     'almacen': 'Almacén',
-        #     'modelo': 'Modelo',
-        #     'marca': 'Marca',
-        # }
+        labels = {
+            'codigo': 'Código',
+            'cantidad': 'Cantidad',
+            'unidad_medida': 'Unidad de medida',
+            'clase_valoracion': 'Clase de valoración',
+            'descripcion': 'Descripción',
+            'ubicacion': 'Ubicación',
+            'almacen': 'Almacén',
+            'modelo': 'Modelo',
+            'marca': 'Marca',
+        }
         widgets = {
             'codigo': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Código'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descripcion'}),

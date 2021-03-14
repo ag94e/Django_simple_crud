@@ -4,8 +4,14 @@ from .forms import FormularioInventario
 
 
 def inicio(request):
+
     if request.method == 'GET':
         return render(request, 'index.html')
+
+    elif request.method == 'POST' and request.POST['codigo'] == "":
+        modelo = ModeloInventario.objects.all()
+        return render(request, 'index.html', {'modelo': modelo})
+    
     elif request.method == 'POST':
         cod = request.POST['codigo']
         modelo = ModeloInventario.objects.filter(codigo=cod)
